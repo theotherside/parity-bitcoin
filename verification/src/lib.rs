@@ -9,6 +9,7 @@ extern crate linked_hash_map;
 extern crate byteorder;
 extern crate time;
 extern crate script;
+extern crate futures;
 
 #[cfg(test)]
 extern crate ethcore_devtools as devtools;
@@ -16,6 +17,7 @@ extern crate ethcore_devtools as devtools;
 extern crate test_data;
 
 mod queue;
+mod queue2;
 mod utils;
 mod chain_verifier;
 
