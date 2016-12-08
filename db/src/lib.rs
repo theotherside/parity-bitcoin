@@ -9,6 +9,7 @@ extern crate chain;
 extern crate serialization;
 extern crate bit_vec;
 #[macro_use] extern crate log;
+extern crate bitcrypto;
 
 #[cfg(test)]
 extern crate ethcore_devtools as devtools;
@@ -28,6 +29,7 @@ mod transaction_meta_provider;
 mod error;
 mod update_context;
 mod indexed_block;
+mod unspent_transaction;
 
 #[derive(Debug, Clone)]
 pub enum BlockRef {
