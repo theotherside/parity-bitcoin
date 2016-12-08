@@ -6,12 +6,13 @@ use kvdb::{Database, DatabaseConfig};
 use byteorder::{LittleEndian, ByteOrder};
 use primitives::hash::H256;
 use primitives::bytes::Bytes;
-use super::{BlockRef, BestBlock, BlockLocation, IndexedBlock, IndexedTransactions};
 use serialization::{serialize, deserialize};
 use chain;
 use parking_lot::RwLock;
-use transaction_meta::TransactionMeta;
 
+use super::{BlockRef, BestBlock, BlockLocation, IndexedBlock, IndexedTransactions};
+
+use transaction_meta::TransactionMeta;
 use error::{Error, ConsistencyError, MetaError};
 use update_context::UpdateContext;
 use block_provider::{BlockProvider, BlockHeaderProvider, AsBlockHeaderProvider};
@@ -50,6 +51,7 @@ pub trait Store : BlockProvider + BlockStapler + TransactionProvider + Transacti
 pub struct Storage {
 	database: Database,
 	best_block: RwLock<Option<BestBlock>>,
+	track_unspent: bool,
 }
 
 const KEY_VERSION: &'static[u8] = b"version";
@@ -398,6 +400,8 @@ impl Storage {
 			result.push(next);
 		}
 	}
+
+	fn index_transaction(&self
 }
 
 impl BlockHeaderProvider for Storage {
